@@ -11,4 +11,5 @@ By Xinyu Zhang, Yuhui Tang
 
 ## Code Running Instruction: 
 Download data.zip, unzip it and put data folder, 521project_code.py and util.py in the same folder.
-ps: The Xgboost model takes long time to run, almost 8 hours,
+
+Ps: The Xgboost model takes long time to run, almost 8 hours,
