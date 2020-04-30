@@ -11,11 +11,12 @@ By Xinyu Zhang, Yuhui Tang
 
 ## Code Running Instruction: 
 Download `data.zip`, unzip it and put data folder, `521project_code.py` and `util.py` in the same folder. 
-* Method 1: Use IDE to open `521project_code.py` and select all code to run.
+* Method 1: Use IDE to open `521project_code.py` and select all code to run. Follow the instruction in the console. Images are produced under your running path.
 * Method 2: 
 1. Open command line
 2. `cd your_folder_for_data.zip_521project_code.py_and_util.py`
 3. `python 521project_code.py`
+4. Follow the instruction in the console. Images are produced under your running path.
 
 
 Ps: The Xgboost model takes long time to run, almost 8 hours.
