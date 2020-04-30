@@ -80,17 +80,55 @@ plot_top_bigram(neg_true_df['review'], 'lightblue', 'negative (true)')
 plot_top_bigram(pos_fake_df['review'], 'pink', 'positive (deceptive)')
 plot_top_bigram(pos_true_df['review'], 'salmon', 'positive (true)')
 
+print('all pictures are in the folder')
+
 
 #######################4. Model Building##################################
-#4.1 SVM
 #features range from 3 dimention: gram number, feaure type(TF or TFIDF), the max number of feaures
-run_model('SVM', review, X, y)
-run_model('DT', review, X, y)
-run_model('LR',review, X,y)
-run_model('RandomForest', review, X, y)
-run_model('Xgboost', review, X,y)
-
-CNN_parameter_list = [(8,8,1),(8,1)]
-run_model('CNN', review, X,y, CNN_parameter_list)
+print('This is the mdoel training part')
+while True:
+    print('please input the NUMBER of these model options, if you want to finish running model, input #')
+    print('1. SVM')
+    print('2. Decision Tree')
+    print('3. Logistic Regression')
+    print('4. Xgboost')
+    print('5. Random Forest')
+    print('6. CNN')
+    
+    model_number = input()
+    if model_number != '#':
+        if  model_number == '1':     
+                run_model('SVM', review, X, y)
+                
+        elif model_number == '2':        
+                run_model('DT', review, X, y)
+                
+        elif model_number == '3':        
+                run_model('LR',review, X,y)
+                
+        elif model_number == '4':
+            print('this takes several hours')
+            run_model('Xgboost', review, X,y)
+        
+        elif model_number == '5':      
+                run_model('RandomForest', review, X, y)
+                
+        elif model_number == '6':
+            structures_number = int(input('how many network structures you want to try?'))
+            structures = []
+            for i in range(structures_number):
+                print('please input the ', i, 'th structure, use \',\' to seperate each layer, e.g 8,8,1')
+                this_one_str = input()
+                this_one = tuple([int(i) for i in this_one_str.split(',')])
+                structures.append(this_one)
+                
+            run_model('CNN', review, X,y, structures)
+            
+    else:
+        print('you finished training process')
+        break
+            
+    
+    
 
     

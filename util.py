@@ -17,6 +17,7 @@ from string import digits
 import pandas as pd
 from sklearn.model_selection import cross_val_score
 from wordcloud import WordCloud, STOPWORDS 
+import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
@@ -28,7 +29,6 @@ import numpy as np
 import datetime
 from keras import models, layers
 from sklearn.model_selection import StratifiedKFold
-
 warnings.filterwarnings("ignore")
 
 
@@ -128,6 +128,7 @@ def TFIDF(corpus, ngram, max_feature):
     return count, row, col
     
 def wordcloud(df, group):
+    matplotlib.use('Agg')
     text = " ".join(review for review in df.review)
     print ("There are {} words in the combination of all review.".format(len(text)))
     
@@ -145,7 +146,9 @@ def wordcloud(df, group):
     plt.title("Word Cloud for " + group + ' reviews', fontsize=18)
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    plt.show()
+    img_title = "Word Cloud for " + group + ' reviews'
+    plt.savefig(img_title + '.png')
+    #plt.show()
 
     
     
@@ -161,9 +164,13 @@ def get_top_n_bigram(corpus, n=None):
 def plot_top_bigram(corpus, color, group):
     common_words = get_top_n_bigram(corpus, 20)
     df = pd.DataFrame(common_words, columns = ['ReviewText' , 'count'])
+    plt.figure( figsize=(10,8) )
     df.groupby('ReviewText').sum()['count'].sort_values(ascending=False).plot(
         kind='bar', figsize=(10, 8), color = color, fontsize = 11,
         title= 'Top 20 bigrams in reviews ' + group)
+    
+    img_title = 'Top 20 bigrams in reviews ' + group
+    plt.savefig(img_title + '.png')
     plt.show()
     
 
