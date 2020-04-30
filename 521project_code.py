@@ -85,9 +85,9 @@ print('all pictures are in the folder')
 
 #######################4. Model Building##################################
 #features range from 3 dimention: gram number, feaure type(TF or TFIDF), the max number of feaures
-print('This is the mdoel training part')
+print('\nThis is the mdoel training part')
 while True:
-    print('please input the NUMBER of these model options, if you want to finish running model, input #')
+    print('Please input the NUMBER of these model options, if you want to finish running model, input #\n')
     print('1. SVM')
     print('2. Decision Tree')
     print('3. Logistic Regression')
@@ -124,8 +124,13 @@ while True:
                 
             run_model('CNN', review, X,y, structures)
             
+        else:
+            print('Your input is wrong, please input the correct NUMBER of model you want to choose\n')
+            continue
+            
+            
     else:
-        print('you finished training process')
+        print('You finished training process')
         break
             
     
